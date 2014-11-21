@@ -1,30 +1,13 @@
-#include <stdlib.h>
-#include <stdio.h>
-#define unless(a) if (!(a))
-#define untill(a) while(!(a))
-
-int die(const char *msg) {
-    printf( "%s\n", msg);
-    int num = 127;
-    exit(num);
-    return num;
-}
+#include "perllib.h"
 
 int main(){
-    FILE *fd = fopen( "/home/torje/temp.text", "w" );
-    printf("%p\n", fd);
-    fd  || die("file not opened");
-    printf( "%s\n", "success");
-    int a = 0;
-    untill ( a >= 10 ) {
-	printf( "%d\n", a);
-	a++;
-    }
-    a=0;
-    do {
-	printf( "%d\n", a);
-	a++;
-    }untill(a>=10);
-    
+    array(int, someArray);
+    resize(someArray, 1024) or die("allocation failed");
+    FILE *fd;
+    open( &fd , "<", "/home/torje/source/needmoreperl/source/c.c") or die("could not open file");
+    char * a;
+    ( a = malloc(1024)  ) or die( "malloc failed");
+    fscanf( fd, "%s\n", a );
+    printf( "%s\n", a);
     return 0;
 }
